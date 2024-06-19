@@ -1,3 +1,10 @@
+/**
+ * Demonstrates the use of the Drug Management System.
+ *
+ * @author Emmanuel Kwarteng
+ * @group Synapse
+ */
+
 public class Main {
     public static void main(String[] args) {
         DrugManagementSystem dms = new DrugManagementSystem("sales.txt");

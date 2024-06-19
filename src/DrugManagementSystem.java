@@ -1,5 +1,19 @@
 import java.util.*;
 
+/**
+ * Represents a management system that gives the pharmacist the following features
+ * 1. Add Drugs
+ * 2. Search Drugs
+ * 3. View Drugs
+ * 4. View Supplier(s) of a Drug
+ * 5. Track sales
+ * 6. Write to sales file
+ * 7. Generate Report
+ *
+ * @author Emmanuel Kwarteng
+ * @group Synapse
+ */
+
 public class DrugManagementSystem {
     private Map<String, Drug> drugs;
     private Map<String, Supplier> suppliers;
