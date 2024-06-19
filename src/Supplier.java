@@ -1,3 +1,10 @@
+/**
+ * Represents the Drug(s) the pharmacy has to offer.
+ *
+ * @author Emmanuel Kwarteng
+ * @group Synapse
+ */
+
 public class Supplier {
     private String supplierID;
     private String name;
