@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/untitled.iml" filepath="$PROJECT_DIR$/untitled.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/Pharmacy Management Systems.iml" filepath="$PROJECT_DIR$/Pharmacy Management Systems.iml" />
+>>>>>>> origin/master
     </modules>
   </component>
 </project>
