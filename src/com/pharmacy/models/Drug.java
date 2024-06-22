@@ -111,7 +111,7 @@ public class Drug implements Serializable {
      * @return true if the codes of the two Drug objects are equal, false otherwise
      */
     /**
-     * @author Emmanuel Kwarteng
+     * @author Emmanuel Kofi Kwarteng
      * made an edit to correct bug
      * Changes made on this previous code
      *         public boolean equals(Object other) {
