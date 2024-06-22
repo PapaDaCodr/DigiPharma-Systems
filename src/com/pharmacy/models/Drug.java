@@ -110,9 +110,22 @@ public class Drug implements Serializable {
      * @param other the object to compare with
      * @return true if the codes of the two Drug objects are equal, false otherwise
      */
+    /**
+     * @author Emmanuel Kwarteng
+     * made an edit to correct bug
+     * Changes made on this previous code
+     *         public boolean equals(Object other) {
+     *         if (other instanceof Drug otherDrug) {
+     *         return code.equals(otherDrug.getCode());
+     *         }
+     *         return false;
+     *         }
+     */
     public boolean equals(Object other) {
-        if (other instanceof Drug otherDrug) {
-            return code.equals(otherDrug.getCode());
+
+        if (other instanceof Drug) {
+            Drug other1 = (Drug) other;
+            return code.equals(other1.getCode());
         }
         return false;
     }
