@@ -7,6 +7,7 @@ import java.util.Objects;
 
 /**
  * @author Osei Owusu Ansah
+ * @author Emmanuel Kofi Kwarteng
  *
  *
  * Represents a supplier of drugs in a pharmacy management system.
@@ -41,6 +42,15 @@ public class Supplier implements Serializable {
     }
 
     /**
+     * Sets the name of the supplier.
+     *
+     * @param name the new name of the supplier
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
      * Returns the location of the supplier.
      *
      * @return the location of the supplier
@@ -50,12 +60,30 @@ public class Supplier implements Serializable {
     }
 
     /**
+     * Sets the Location of the supplier.
+     *
+     * @param location the new location of the supplier
+     */
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    /**
      * Returns the contact information of the supplier.
      *
      * @return the contact information of the supplier
      */
     public String getContact() {
         return contact;
+    }
+
+    /**
+     * Sets the contact of the supplier.
+     *
+     * @param contact the new contact of the supplier
+     */
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     /**
