@@ -84,22 +84,28 @@ public class DrugManagementSystem {
     }
 
     // Method to view suppliers for a specific drug by Drug Code
-    public void viewSuppliersForDrug(String drugCode) {
-        Drug drug = searchDrugByCode(drugCode);
-        if (drug != null) {
-            List<Supplier> suppliers = drug.getSuppliers();
-            if (suppliers.isEmpty()) {
-                System.out.println("No suppliers for drug " + drug.getName() + ".");
-            } else {
-                System.out.println("Suppliers for drug " + drug.getName() + ":");
-                for (Supplier supplier : suppliers) {
-                    System.out.println(supplier);
-                }
-            }
+    public void viewSuppliersForDrug(String code) {
+    Drug drug = searchDrugByCode(code);
+    if (drug != null) {
+        System.out.println("Suppliers for Drug: " + drug.getName());
+        List<Supplier> drugSuppliers = drug.getSuppliers();
+        if (drugSuppliers.isEmpty()) {
+            System.out.println("No suppliers found for the given drug.");
         } else {
-            System.out.println("Drug with code " + drugCode + " not found.");
+            int supplierCount = 0;
+            for (Supplier supplier : drugSuppliers) {
+                System.out.println("Supplier " + (++supplierCount) + ": ");
+                System.out.println("Name: " + supplier.getName());
+                System.out.println("Location: " + supplier.getLocation());
+                System.out.println("Contact: " + supplier.getContact());
+                System.out.println();
+            }
         }
+    } else {
+        System.out.println("Drug not found in the system.");
     }
+}
+
 
     // Method to view all drugs
     public void viewAllDrugs() {
