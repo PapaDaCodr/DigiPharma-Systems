@@ -1,21 +1,33 @@
 package com.pharmacy.management;
 
 import com.pharmacy.models.Drug;
+import com.pharmacy.models.SalesTracker;
 import com.pharmacy.models.Supplier;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * This class represents a DrugManagementSystem that allows the pharmacist
+ * the manage the drugs and suppliers for the drugs as well as track drug 
+ * purchases
+ * 
+ * @author Emmanuel Kofi Kwarteng
+ */
 
 public class DrugManagementSystem {
     // List to store Drug objects
     private List<Drug> drugs;
     // List to store Supplier objects
     private List<Supplier> suppliers;
+    // Instantiating the SalesTracker class;
+    private SalesTracker salesTracker;
 
     // Constructor to initialize the drugs and suppliers list
     public DrugManagementSystem() {
         this.drugs = new ArrayList<>();
         this.suppliers = new ArrayList<>();
+        this.salesTracker = new SalesTracker();
     }
 
     // Method to add a new drug
@@ -119,6 +131,20 @@ public class DrugManagementSystem {
         }
     }
 
+    public void trackSale(String drugCode) {
+        Drug drug = searchDrugByCode(drugCode);
+        if (drug != null) {
+            salesTracker.trackSale(drugCode);
+            System.out.println("Sale tracked for drug: " + drug.getName());
+        } else {
+            System.out.println("Cannot track sale. Drug with code " + drugCode + " not found.");
+        }
+    }
+
+    public void writeSalesToFile(String filename) {
+        salesTracker.writeSalesToFile(filename);
+    }
+
     // Main method for testing the DrugManagementSystem class
     public static void main(String[] args) {
         // Create an instance of DrugManagementSystem
@@ -147,7 +173,7 @@ public class DrugManagementSystem {
         drugManagementSystem.linkSupplierToDrug("002", supplier2);
 
         // View suppliers for a specific drug
-        drugManagementSystem.viewSuppliersForDrug("001");
+        // drugManagementSystem.viewSuppliersForDrug("001");
 
         // Search for suppliers by location
         List<Supplier> suppliersInNY = drugManagementSystem.searchSuppliersByLocation("New York");
@@ -159,6 +185,14 @@ public class DrugManagementSystem {
         }
 
         // View all drugs
-        drugManagementSystem.viewAllDrugs();
+        // drugManagementSystem.viewAllDrugs();
+
+        // Tracking sales
+        drugManagementSystem.trackSale("001");
+        drugManagementSystem.trackSale("003");
+        drugManagementSystem.trackSale("001");
+
+        // Viewing sales
+        drugManagementSystem.writeSalesToFile("sales.txt");
     }
 }
