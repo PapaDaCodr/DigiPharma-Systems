@@ -1,9 +1,12 @@
 package com.pharmacy.management;
 
 import com.pharmacy.models.Drug;
+import com.pharmacy.models.PurchaseHistory;
+import com.pharmacy.models.PurchaseManager;
 import com.pharmacy.models.SalesTracker;
 import com.pharmacy.models.Supplier;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,14 +23,17 @@ public class DrugManagementSystem {
     private List<Drug> drugs;
     // List to store Supplier objects
     private List<Supplier> suppliers;
-    // Instantiating the SalesTracker class;
+    // Instantiating a variable for the SalesTracker class
     private SalesTracker salesTracker;
+    // Instantiating a variable for the PurchaseManager class
+    private PurchaseManager purchaseManager;
 
     // Constructor to initialize the drugs and suppliers list
     public DrugManagementSystem() {
         this.drugs = new ArrayList<>();
         this.suppliers = new ArrayList<>();
         this.salesTracker = new SalesTracker();
+        this.purchaseManager = new PurchaseManager();
     }
 
     // Method to add a new drug
@@ -135,14 +141,61 @@ public class DrugManagementSystem {
         Drug drug = searchDrugByCode(drugCode);
         if (drug != null) {
             salesTracker.trackSale(drugCode);
+
+            // Record the sale in purchase history
+            PurchaseHistory purchaseHistory = new PurchaseHistory(LocalDateTime.now());
+            purchaseHistory.addPurchasedDrug(drug);
+            purchaseManager.addPurchase(purchaseHistory);
+
             System.out.println("Sale tracked for drug: " + drug.getName());
         } else {
             System.out.println("Cannot track sale. Drug with code " + drugCode + " not found.");
         }
     }
 
-    public void writeSalesToFile(String filename) {
-        salesTracker.writeSalesToFile(filename);
+    public void viewPurchaseHistoryByDrug(String drugCode) {
+        Drug drug = searchDrugByCode(drugCode);
+        if (drug != null) {
+            List<PurchaseHistory> histories = purchaseManager.getPurchaseHistoriesByDrug(drug);
+            if (histories.isEmpty()) {
+                System.out.println("No purchase history found for drug: " + drug.getName());
+            } else {
+                System.out.println("Purchase history for drug: " + drug.getName());
+                for (PurchaseHistory history : histories) {
+                    history.displayPurchaseDetails();
+                }
+            }
+        } else {
+            System.out.println("Drug with code " + drugCode + " not found.");
+        }
+    }
+
+    public void viewAllPurchaseHistories() {
+        List<PurchaseHistory> histories = purchaseManager.getPurchaseHistories();
+        if (histories.isEmpty()) {
+            System.out.println("No purchase histories available.");
+        } else {
+            System.out.println("All purchase histories:");
+            for (PurchaseHistory history : histories) {
+                history.displayPurchaseDetails();
+            }
+        }
+    }
+
+    public void sortAndViewPurchaseHistoriesByDate() {
+        List<PurchaseHistory> sortedHistories = purchaseManager.sortPurchaseHistoriesByDate();
+        System.out.println("Purchase histories sorted by date:");
+        for (PurchaseHistory history : sortedHistories) {
+            history.displayPurchaseDetails();
+        }
+    }
+
+    public void sortAndViewPurchaseHistoriesByAmount() {
+        List<PurchaseHistory> sortedHistories = purchaseManager.sortPurchaseHistoriesByAmount();
+        System.out.println("Purchase histories sorted by amount:");
+        for (PurchaseHistory history : sortedHistories) {
+            history.displayPurchaseDetails();
+        }
     }
 
     // Main method for testing the DrugManagementSystem class
@@ -192,7 +245,16 @@ public class DrugManagementSystem {
         drugManagementSystem.trackSale("003");
         drugManagementSystem.trackSale("001");
 
-        // Viewing sales
-        drugManagementSystem.writeSalesToFile("sales.txt");
+        // View purchase history for a specific drug
+        drugManagementSystem.viewPurchaseHistoryByDrug("001");
+
+        // View all purchase histories
+        drugManagementSystem.viewAllPurchaseHistories();
+
+        // Sort and view purchase histories by date
+        drugManagementSystem.sortAndViewPurchaseHistoriesByDate();
+
+        // Sort and view purchase histories by amount
+        drugManagementSystem.sortAndViewPurchaseHistoriesByAmount();
     }
 }
