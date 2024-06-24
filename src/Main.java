@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+// <<<<<<< HEAD
 /**
  * Demonstrates the use of the Drug Management System.
  *
@@ -32,7 +32,8 @@ public class Main {
         dms.addSupplier(supplier3);
         dms.addSupplier(supplier4);
         dms.addSupplier(supplier5);
-
+    }
+}
 //        dms.viewDrugs();
 //        dms.viewSuppliersForDrug("002");
 //        dms.viewSuppliersForDrug("003");
@@ -42,7 +43,7 @@ public class Main {
 //        dms.sellDrug("002", 20);
 //        dms.sellDrug("002", 2);
 //        dms.viewPurchaseHistory("002");
-=======
+// =======
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
@@ -58,6 +59,6 @@ public class Main {
             // for you, but you can always add more by pressing Ctrl+F8.
             System.out.println("i = " + i);
         }
->>>>>>> origin/master
+// >>>>>>> origin/master
     }
 }
