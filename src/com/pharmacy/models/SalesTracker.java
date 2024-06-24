@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
 /**
  * This class represents a SalesTracker class for tracking drugs bought
  * and write drug code to sales file.
@@ -14,10 +13,8 @@ import java.util.List;
  * @author Emmanuel Kofi Kwarteng
  */
 
- public class SalesTracker {
-=======
 public class SalesTracker {
->>>>>>> 81e6002f144d2c6e4460e4f96d033b2b5965fb0b
+
     private List<String> sales;
 
     public SalesTracker() {
