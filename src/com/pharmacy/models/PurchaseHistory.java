@@ -72,4 +72,14 @@ public class PurchaseHistory implements Serializable {
     public double getTotalAmount() {
         return totalAmount;
     }
+
+    public void displayPurchaseDetails() {
+        System.out.println("Purchase Date: " + purchaseDate);
+        System.out.println("Purchased Drugs:");
+        for (Drug drug : purchasedDrugs) {
+            System.out.println(
+                    " - " + drug.getName() + " (Code: " + drug.getCode() + ", Price: $" + drug.getPrice() + ")");
+        }
+        System.out.println("Total Amount: $" + totalAmount);
+    }
 }
